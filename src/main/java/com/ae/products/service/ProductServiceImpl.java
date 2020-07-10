@@ -31,6 +31,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public Product createProduct(final Product product) {
         Product productSaved = findProductById(product.getId());
         if ( productSaved != null) {
@@ -40,11 +41,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public Product updateProduct(final Product product) {
         return productRepository.save(product);
     }
 
     @Override
+    @Transactional
     public void deleteProduct(final Long id) {
         productRepository.deleteById(id);
     }

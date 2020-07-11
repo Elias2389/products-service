@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public Product createProduct(final Product product) {
         Product productSaved = findProductById(product.getId());
-        if ( productSaved != null) {
+        if (productSaved != null) {
             return productSaved;
         }
         productRepository.save(product);
@@ -46,11 +46,11 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public Product updateProduct(final Product product) {
         Product productSaved = findProductById(product.getId());
-        if ( productSaved != null) {
+        if (productSaved != null) {
             productRepository.save(product);
             return findProductById(product.getId());
         }
-        return new Product();
+        return null;
     }
 
     @Override

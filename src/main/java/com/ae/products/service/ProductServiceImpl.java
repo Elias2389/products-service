@@ -14,6 +14,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
+    @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -37,13 +38,19 @@ public class ProductServiceImpl implements ProductService {
         if ( productSaved != null) {
             return productSaved;
         }
-        return productRepository.save(product);
+        productRepository.save(product);
+        return findProductById(product.getId());
     }
 
     @Override
     @Transactional
     public Product updateProduct(final Product product) {
-        return productRepository.save(product);
+        Product productSaved = findProductById(product.getId());
+        if ( productSaved != null) {
+            productRepository.save(product);
+            return findProductById(product.getId());
+        }
+        return new Product();
     }
 
     @Override

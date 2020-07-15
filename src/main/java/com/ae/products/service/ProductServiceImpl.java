@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public Product findProductById(final Long id) {
-        return productRepository.findById(id).get();
+        return productRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class ProductServiceImpl implements ProductService {
         if (productSaved != null) {
             return productSaved;
         }
-        productRepository.save(product);
-        return findProductById(product.getId());
+        ;
+        return productRepository.save(product);
     }
 
     @Override

@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
 @Data
+@Entity
 @Table(name = "products")
 public class Product implements Serializable {
 
@@ -19,6 +19,6 @@ public class Product implements Serializable {
     private Double price;
 
     @Temporal(TemporalType.DATE)
-    private Date create;
+    private Date createAt;
 
 }
